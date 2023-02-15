@@ -17,7 +17,7 @@ ping_time=30
 check_loss() {
 ip route replace $2 via $1
 packet_loss=$(ping $2 -w $3 | grep loss | awk '{print $(NF-4)}' | cut -d"%" -f1)
-echo $(date +"%d.%m.%Y %H:%M |") $1 has $packet_loss '% packet loss' >> /tmp/gw_switcher.log
+echo $(date +"%d.%m.%Y %H:%M |") $1 has $packet_loss '% packet loss' >> /var/log/gw_switcher.log
 echo $packet_loss > /tmp/$1.tmp
 }
 # set default gateway
