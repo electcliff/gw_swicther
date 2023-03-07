@@ -20,7 +20,6 @@ set_gw() {
 # main func
 switcher() {
     # выполняем параллельные пинги через разных провайдеров
-    echo $gw1 $target
     check_loss $gw1 $checkip1 $ping_time &
     check_loss $gw2 $checkip2 $ping_time &
     wait
@@ -52,7 +51,7 @@ switcher() {
     fi
 }
 
-source /home/merlin/git/gw_swither/gw-switcher.config.sample
+source /etc/gw-switcher.config
 #проверяем конфиг файл
 if [[ -n $gw1 && -n $gw2 && -n $primarygw && -n $checkip1 && -n $checkip2 && -n $ping_time && -n $target && -n $logfile ]]; then
     while :
@@ -61,5 +60,6 @@ if [[ -n $gw1 && -n $gw2 && -n $primarygw && -n $checkip1 && -n $checkip2 && -n 
         done
 else
     echo "Can't get variable. Check config file"
+    echo "Can't get variable. Check config file" >> $logfile
 fi
 
