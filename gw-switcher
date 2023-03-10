@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+### Variables
+# если меняем лог файл, нужно поменять и в /etc/logrotate/gw-switcher
+logfile=/var/log/gw_switcher.log 
 ### Functions
 # check packet loss
 check_loss() {
@@ -11,7 +14,7 @@ check_loss() {
 set_gw() { 
     default_route=$(ip route |grep $2 |awk '{print $3}')
     if [[ "$default_route" == "$1" ]]; then
-        echo $(date +"%d.%m.%Y %H:%M |") current route to $2 via $1, do not change >> $logfile
+#        echo $(date +"%d.%m.%Y %H:%M |") current route to $2 via $1, do not change >> $logfile
     else
         ip route replace $2 via $1 >> $logfile
         echo $(date +"%d.%m.%Y %H:%M |") CHANGE ROUTE TO $2 via $1 >> $logfile

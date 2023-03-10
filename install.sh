@@ -12,4 +12,13 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
+sudo cat << EOF > /etc/logrotate.d/gw_switcher
+/var/log/gw_switcher.log  {
+    size 20000k
+    missingok
+    rotate 24
+    compress
+    create
+}
+EOF
 sudo systemctl daemon-reload
