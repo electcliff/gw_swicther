@@ -5,7 +5,7 @@
 **Как systemd сервис**
 ```
 sudo apt install unzip -y
-wget https://github.com/electcliff/gw_swither/archive/refs/heads/main.zip
+wget https://github.com/electcliff/gw_switcher/archive/refs/heads/main.zip
 unsip main.zip
 cd gw_swither-main
 ./install.sh
